@@ -19,7 +19,7 @@ module.exports = gql`
   input Filter {
     id: Int
     name: String!
-    created: Date @date
+    created: Date
   }
 
   input Sort {

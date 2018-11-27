@@ -22,8 +22,6 @@
     "clean": "del-cli \"dist/**/*\"",
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production babel src --out-dir dist --copy-files",
-    "prestart": "npm run build",
-    "start": "node dist/index.js",
-    "now-start": "node dist/index.js"
+    "start": "node dist/index.js"
   }
 }

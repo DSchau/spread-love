@@ -70,3 +70,6 @@ yarn-error.log
 
 # database files
 *.db
+
+# build files
+dist
