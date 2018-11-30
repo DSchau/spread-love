@@ -8,7 +8,7 @@ const server = new ApolloServer(schema);
 const app = express();
 server.applyMiddleware({ app });
 
-const port = 8000;
+const port = 8080;
 
 app.listen({ port }, () =>
   console.log(

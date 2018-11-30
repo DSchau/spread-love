@@ -1,20 +1,31 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "@dschau/spread-love-client",
+  "description": "A demo for FITC",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Dustin Schau <dustin@gatsbyjs.com> (https://dustinschau.com)",
   "dependencies": {
+    "apollo-boost": "^0.1.22",
+    "emotion": "9",
+    "emotion-server": "9",
     "gatsby": "^2.0.53",
     "gatsby-image": "^2.0.20",
+    "gatsby-plugin-emotion": "^2.0.7",
+    "gatsby-plugin-layout": "^1.0.9",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.16",
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-sharp": "^2.0.12",
     "gatsby-source-filesystem": "^2.0.8",
+    "gatsby-source-graphql": "^2.0.6",
     "gatsby-transformer-sharp": "^2.1.8",
+    "normalize.css": "^8.0.1",
     "react": "^16.6.3",
+    "react-apollo": "^2.3.2",
     "react-dom": "^16.6.3",
-    "react-helmet": "^5.2.0"
+    "react-emotion": "9",
+    "react-helmet": "^5.2.0",
+    "react-icons": "^3.2.2",
+    "typeface-montserrat": "^0.0.54"
   },
   "keywords": [
     "gatsby"
