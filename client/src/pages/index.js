@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'react-emotion'
 import { MdSend } from 'react-icons/md'
+import { gql } from 'apollo-boost'
+import { Mutation } from 'react-apollo'
 import { navigate } from 'gatsby'
 
 import { Canvas, Heart, Footer } from '../components'
@@ -109,59 +111,72 @@ Button.defaultProps = {
   type: 'submit',
 }
 
-const handleSubmit = ev => {
-  ev.preventDefault()
+const handleSubmit = sendLove => {
+  return ev => {
+    ev.preventDefault()
 
-  navigate('/love')
+    navigate('/love')
+  }
 }
 
 function Index() {
   return (
-    <Container>
-      <Canvas>
-        {({ context, x, y }) => {
-          const NUM_ROWS = 10 // x > 768 ? 25 : 15;
-          const blockSize = Math.ceil(x / NUM_ROWS)
-          const grid = new Array(NUM_ROWS)
-            .fill(undefined)
-            .map((_, index) =>
-              new Array(Math.ceil(y / blockSize))
+    <Mutation
+      mutation={gql`
+        mutation SendLove($name: String!) {
+          addLove(name: $name) {
+            name
+          }
+        }
+      `}
+      children={sendLove => (
+        <Container>
+          <Canvas>
+            {({ context, x, y }) => {
+              const NUM_ROWS = 10 // x > 768 ? 25 : 15;
+              const blockSize = Math.ceil(x / NUM_ROWS)
+              const grid = new Array(NUM_ROWS)
                 .fill(undefined)
-                .map((_, yIndex) => [index * blockSize, yIndex * blockSize])
-            )
-          grid.forEach(row => {
-            row.forEach(([x, y]) => {
-              context.font = `${y / 35}px sans-serif`
-              context.fillText('❤️', x / 2, y / 2)
-            })
-          })
+                .map((_, index) =>
+                  new Array(Math.ceil(y / blockSize))
+                    .fill(undefined)
+                    .map((_, yIndex) => [index * blockSize, yIndex * blockSize])
+                )
+              grid.forEach(row => {
+                row.forEach(([x, y]) => {
+                  context.font = `${y / 35}px sans-serif`
+                  context.fillText('❤️', x / 2, y / 2)
+                })
+              })
 
-          return null
-        }}
-      </Canvas>
-      <Header>
-        <Title>
-          {`{...`}
-          <Heart />
-          {`}`}
-        </Title>
-      </Header>
-      <Form onSubmit={handleSubmit}>
-        <InputContainer>
-          <Input />
-          <Button>
-            <MdSend />
-          </Button>
-        </InputContainer>
-        <Explanation>
-          What do you love? What fuels your fire? What are you passionate about?
-          Share it!
-        </Explanation>
-      </Form>
-      <Footer>
-        <Message>#buildwithgatsby</Message>
-      </Footer>
-    </Container>
+              return null
+            }}
+          </Canvas>
+          <Header>
+            <Title>
+              {`{...`}
+              <Heart />
+              {`}`}
+            </Title>
+          </Header>
+          <Form onSubmit={handleSubmit(sendLove)}>
+            <InputContainer>
+              <Input />
+              <Button>
+                <MdSend />
+              </Button>
+            </InputContainer>
+            <Explanation>
+              What do you love? What fuels your fire? What are you passionate
+              about? Share it!
+            </Explanation>
+          </Form>
+          <Footer>
+            <Message>#buildwithgatsby</Message>
+          </Footer>
+        </Container>
+      )}
+    />
   )
 }
 
