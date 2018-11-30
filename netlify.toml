@@ -1,0 +1,4 @@
+[build]
+  base = "client"
+  command = "yarn build"
+  publish = "client/public"
