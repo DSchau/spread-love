@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'react-emotion'
 
+import { LoveCanvas } from '../components'
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,7 +11,6 @@ const Container = styled.div`
 
   height: 100vh;
   width: 100vw;
-  background-color: #fe251b;
   overflow: hidden;
   position: relative;
 `
@@ -17,12 +18,37 @@ const Container = styled.div`
 /*
  * TODO: implement query
  */
-function Love() {
-  return (
-    <Container>
-      <h1 css={{ color: 'white' }}>These are the results.</h1>
-    </Container>
-  )
+class Love extends React.Component {
+  state = {
+    something: false,
+  }
+
+  render() {
+    return (
+      <Container>
+        <LoveCanvas
+          items={[
+            {
+              name: 'asdf',
+              count: 10,
+            },
+            {
+              name: 'werr',
+              count: 10,
+            },
+            {
+              name: 'hahah',
+              count: 10,
+            },
+            {
+              name: 'sup',
+              count: 10,
+            },
+          ]}
+        />
+      </Container>
+    )
+  }
 }
 
 export default Love

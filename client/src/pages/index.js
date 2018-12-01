@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
 import { navigate } from 'gatsby'
 
-import { Canvas, Heart, Footer } from '../components'
+import { HeartCanvas, Heart, Footer } from '../components'
 import { mediaQuery, position } from '../style'
 
 const Container = styled.div`
@@ -24,23 +24,24 @@ const Container = styled.div`
 const Header = styled.header`
   box-sizing: border-box;
   background-color: #fffaf5;
+  border-bottom: 2px solid #c51104;
   width: 100%;
   padding: 1rem 0.25rem;
   ${position.absolute({ top: true })}
 `
 
-const Message = styled.p`
-  margin: 0;
-  padding: 0;
-  text-align: center;
-`
-
-const Title = styled.h1`
-  margin: 0;
-  font-family: monospace;
-  font-size: 72px;
-  text-align: center;
-`
+const Title = styled.h1({
+  margin: 0,
+  fontFamily: 'monospace',
+  textAlign: 'center',
+  fontSize: 40,
+  [mediaQuery('medium')]: {
+    fontSize: 48,
+  },
+  [mediaQuery('large')]: {
+    fontSize: 60,
+  },
+})
 
 const Form = styled.form({
   width: '100%',
@@ -58,9 +59,11 @@ const Explanation = styled.h2({
   padding: 0,
   color: 'white',
   textAlign: 'center',
-  padding: '0.5rem 0',
+  padding: '0.5rem',
   margin: '0.5rem 0',
-  border: '2px solid white',
+  lineHeight: 1.5,
+  border: '4px solid #fffaf5',
+  backgroundColor: 'black',
   borderLeftWidth: 0,
   borderRightWidth: 0,
   fontSize: 16,
@@ -111,6 +114,13 @@ Button.defaultProps = {
   type: 'submit',
 }
 
+const MediumUp = styled.span({
+  display: 'none',
+  [mediaQuery('medium')]: {
+    display: 'inline-block',
+  },
+})
+
 const handleSubmit = sendLove => {
   return ev => {
     ev.preventDefault()
@@ -131,27 +141,7 @@ function Index() {
       `}
       children={sendLove => (
         <Container>
-          <Canvas>
-            {({ context, x, y }) => {
-              const NUM_ROWS = 10 // x > 768 ? 25 : 15;
-              const blockSize = Math.ceil(x / NUM_ROWS)
-              const grid = new Array(NUM_ROWS)
-                .fill(undefined)
-                .map((_, index) =>
-                  new Array(Math.ceil(y / blockSize))
-                    .fill(undefined)
-                    .map((_, yIndex) => [index * blockSize, yIndex * blockSize])
-                )
-              grid.forEach(row => {
-                row.forEach(([x, y]) => {
-                  context.font = `${y / 35}px sans-serif`
-                  context.fillText('❤️', x / 2, y / 2)
-                })
-              })
-
-              return null
-            }}
-          </Canvas>
+          <HeartCanvas />
           <Header>
             <Title>
               {`{...`}
@@ -161,19 +151,20 @@ function Index() {
           </Header>
           <Form onSubmit={handleSubmit(sendLove)}>
             <InputContainer>
-              <Input />
+              <Input required={true} />
               <Button>
                 <MdSend />
               </Button>
             </InputContainer>
             <Explanation>
-              What do you love? What fuels your fire? What are you passionate
-              about? Share it!
+              What do you love?{` `}
+              <MediumUp>
+                What fuels your fire? What are you passionate about?
+              </MediumUp>{' '}
+              Share it!
             </Explanation>
           </Form>
-          <Footer>
-            <Message>#buildwithgatsby</Message>
-          </Footer>
+          <Footer />
         </Container>
       )}
     />

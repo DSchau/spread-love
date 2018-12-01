@@ -1,3 +1,6 @@
 export { default as Canvas } from './canvas'
 export { default as Heart } from './heart'
+export { default as HeartCanvas } from './heart-canvas'
 export { default as Footer } from './footer'
+export { default as LoveCanvas } from './love-canvas'
+export { default as OutboundLink } from './outbound-link'

@@ -49,6 +49,8 @@ export default class Canvas extends Component {
     context.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
 
+  positionInScaledCanvas = points => points.map(point => point / 4)
+
   render() {
     const { children, render = children } = this.props
     const { context } = this.state
@@ -58,6 +60,7 @@ export default class Canvas extends Component {
           ? render({
               ...this.state,
               clear: this.clear,
+              getPosition: this.positionInScaledCanvas,
             })
           : null}
       </Container>

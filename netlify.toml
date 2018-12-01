@@ -1,4 +1,3 @@
 [build]
-  base = "client"
-  command = "yarn build"
+  command = "cd client && yarn build"
   publish = "client/public"
