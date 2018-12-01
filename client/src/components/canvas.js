@@ -32,15 +32,12 @@ export default class Canvas extends Component {
   }
 
   componentWillUnmount() {
+    this.clear()
     window.removeEventListener('resize', this.handleResize)
   }
 
   shouldComponentUpdate(_, nextState) {
     return this.props.x !== nextState.x || this.props.y !== nextState.y
-  }
-
-  componentWillUnmount() {
-    this.clear()
   }
 
   handleResize = debounce(() => {

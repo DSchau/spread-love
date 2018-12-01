@@ -15,6 +15,7 @@ const Container = styled.span`
 
 function Heart({ animate }) {
   return (
+    // eslint-disable-next-line
     <Container role="img" aria-label="Heart" animate={animate}>
       ❤️
     </Container>
