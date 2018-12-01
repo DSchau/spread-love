@@ -35,7 +35,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "predevelop": "gatsby-dev --scan-once --quiet --packages gatsby && chmod +x ./node_modules/.bin/gatsby",
+    "__predevelop__": "gatsby-dev --scan-once --quiet --packages gatsby && chmod +x ./node_modules/.bin/gatsby",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
