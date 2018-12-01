@@ -16,7 +16,7 @@ function HeartCanvas() {
             const fontSize = Math.ceil(Math.sqrt(y / 2.5))
             context.font = `${fontSize}px sans-serif`
             context.fillStyle = `rgba(255, 255, 255, ${Math.random()})`
-            context.fillText('❤', x / 2, y / 2)
+            context.fillText(String.fromCodePoint(0x2665), x / 2, y / 2)
           }
         }
 
