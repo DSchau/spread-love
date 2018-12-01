@@ -17,36 +17,30 @@ const Container = styled.div`
   position: relative;
 `
 
-class Love extends React.Component {
-  state = {
-    something: false,
-  }
-
-  render() {
-    return (
-      <Query
-        query={gql`
-          {
-            allLove {
-              name
-              count
-            }
+function Love() {
+  return (
+    <Query
+      query={gql`
+        {
+          allLove {
+            name
+            count
           }
-        `}
-        pollInterval={1500}
-        children={({ data, loading, error }) => {
-          if (loading || error) {
-            return null
-          }
-          return (
-            <Container>
-              <LoveCanvas items={data.allLove} />
-            </Container>
-          )
-        }}
-      />
-    )
-  }
+        }
+      `}
+      pollInterval={1500}
+      children={({ data, loading, error }) => {
+        if (loading || error) {
+          return null
+        }
+        return (
+          <Container>
+            <LoveCanvas items={data.allLove} />
+          </Container>
+        )
+      }}
+    />
+  )
 }
 
 export default Love
