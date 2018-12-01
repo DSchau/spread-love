@@ -16,6 +16,12 @@ module.exports = gql`
     created: Date! @date
   }
 
+  type LoveCounts {
+    id: ID!
+    name: String!
+    count: Int!
+  }
+
   input Filter {
     id: ID
     name: String!
@@ -33,9 +39,11 @@ module.exports = gql`
       sort: Sort = { fields: ["created"], order: DESC }
       limit: Int
     ): [Love]
+    allLove: [LoveCounts]
   }
 
   type Mutation {
     addLove(name: String!): Love!
+    reset: Boolean!
   }
 `;

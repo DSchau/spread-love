@@ -37,9 +37,30 @@ module.exports = {
         .data()
         .map(normalize);
     },
+    /*
+     * This is bad
+     * Almost certainly a better way to do it
+     */
+    allLove(_, args, { database }) {
+      const items = database.items
+        .chain()
+        .find()
+        .data();
+      const lookup = items.reduce((merged, item) => {
+        if (!merged[item.name]) {
+          merged[item.name] = {
+            ...item,
+            count: 0,
+          };
+        }
+        merged[item.name].count += 1;
+        return merged;
+      }, {});
+      return Object.keys(lookup).map(key => lookup[key]);
+    },
   },
   Mutation: {
-    async addLove(_, args, { database }) {
+    addLove(_, args, { database }) {
       if (filter.isProfane(args.name)) {
         throw new Error(`Hey now! I see you 👀`);
       }
@@ -49,6 +70,10 @@ module.exports = {
       };
       database.items.insert(item);
       return item;
+    },
+    reset(_, args, { database }) {
+      database.items.clear();
+      return true;
     },
   },
 };
