@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
+import debounce from 'lodash.debounce'
 
 const Container = styled.canvas`
   overflow: hidden;
@@ -12,13 +13,41 @@ const Container = styled.canvas`
 `
 
 export default class Canvas extends Component {
-  state = {
-    context: null,
-    x: 0,
-    y: 0,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      context: null,
+      x: 0,
+      y: 0,
+    }
+
+    this.handleResize = this.handleResize.bind(this)
   }
 
   componentDidMount() {
+    this.init()
+
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  shouldComponentUpdate(_, nextState) {
+    return this.props.x !== nextState.x || this.props.y !== nextState.y
+  }
+
+  componentWillUnmount() {
+    this.clear()
+  }
+
+  handleResize = debounce(() => {
+    this.init()
+  }, 25)
+
+  init = () => {
     const canvas = this.canvas
 
     const maxX = window.innerWidth
@@ -37,10 +66,6 @@ export default class Canvas extends Component {
       x: maxX,
       y: maxY,
     })
-  }
-
-  componentWillUnmount() {
-    this.clear()
   }
 
   clear = () => {

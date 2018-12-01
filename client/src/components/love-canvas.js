@@ -77,6 +77,7 @@ class Love extends React.Component {
                       fontSize={scale}
                       lightness={lightness}
                       color={color}
+                      title={item.name}
                     >
                       {item.name}
                     </Cell>

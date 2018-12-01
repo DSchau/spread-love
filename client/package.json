@@ -19,6 +19,7 @@
     "gatsby-source-graphql": "^2.0.7",
     "gatsby-transformer-sharp": "^2.1.8",
     "isomorphic-fetch": "^2.2.1",
+    "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
     "react": "16.7.0-alpha.2",
     "react-apollo": "^2.3.2",

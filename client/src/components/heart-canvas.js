@@ -2,14 +2,14 @@ import React from 'react'
 import Canvas from './canvas'
 
 class HeartCanvas extends React.Component {
-  shouldComponentUpdate() {
+  shouldComponentUpdate(_, nextState) {
     return false
   }
 
   render() {
     return (
       <Canvas>
-        {({ context, x, y }) => {
+        {({ clear, context, x, y }) => {
           const NUM_ROWS = Math.ceil(Math.sqrt(x)) / 2
           const blockSize = Math.ceil(x / NUM_ROWS)
 
