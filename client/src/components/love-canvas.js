@@ -3,10 +3,26 @@ import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 
 import Heart from './heart'
+import { mediaQuery } from '../style'
 
 const Container = styled.div`
   font-family: monospace;
-  font-size: 10vw;
+  font-size: 40px;
+  ${mediaQuery('medium')} {
+    font-size: 60px;
+  }
+`
+
+const Message = styled.p`
+  font-size: 14px;
+  color: #ccc;
+  text-align: center;
+  ${mediaQuery('medium')} {
+    font-size: 16px;
+  }
+  ${mediaQuery('large')} {
+    font-size: 18px;
+  }
 `
 
 const Table = styled.table`
@@ -33,6 +49,7 @@ const Empty = () => (
     {`{...`}
     <Heart />
     {`}`}
+    <Message>(waiting for love&hellip;)</Message>
   </Container>
 )
 
