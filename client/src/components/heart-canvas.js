@@ -5,7 +5,7 @@ function HeartCanvas() {
   return (
     <Canvas>
       {({ context, x, y }) => {
-        const NUM_ROWS = Math.ceil(Math.sqrt(x))
+        const NUM_ROWS = Math.ceil(Math.sqrt(x)) / 2
         const blockSize = Math.ceil(x / NUM_ROWS)
 
         for (let i = 0; i < NUM_ROWS; i++) {

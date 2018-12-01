@@ -82,6 +82,7 @@ const InputContainer = styled.div`
 const Input = styled.input`
   padding: 1rem;
   background-color: white;
+  border-radius: 0;
   outline: 1px solid rgba(0, 0, 0, 1);
   width: 100%;
   font-size: 2rem;
@@ -98,7 +99,7 @@ Input.defaultProps = {
 const Button = styled.button`
   background-color: #c51104;
   border: none;
-  border-radius: none;
+  border-radius: 0;
   outline: 1px solid black;
 
   color: white;
