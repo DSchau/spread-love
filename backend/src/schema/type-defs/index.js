@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require('apollo-server-micro');
 
 module.exports = gql`
   directive @date(defaultFormat: String = "MM/DD/YYYY") on FIELD_DEFINITION
@@ -11,13 +11,13 @@ module.exports = gql`
   }
 
   type Love {
-    id: Int!
+    id: ID!
     name: String!
     created: Date! @date
   }
 
   input Filter {
-    id: Int
+    id: ID
     name: String!
     created: Date
   }
