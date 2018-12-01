@@ -7,6 +7,7 @@
     "apollo-server-micro": "^2.2.5",
     "bad-words": "^3.0.0",
     "date-fns": "^1.29.0",
+    "graphql": "0.13.2",
     "lokijs": "^1.5.5",
     "micro": "^9.3.3"
   },
@@ -24,5 +25,8 @@
     "prestart": "npm run build",
     "start": "micro dist/index.js",
     "now-start": "micro dist/index.js"
+  },
+  "resolutions": {
+    "graphql": "0.13.2"
   }
 }
