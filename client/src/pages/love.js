@@ -27,8 +27,8 @@ class Love extends React.Component {
     return (
       <Container>
         <LoveCanvas
-          items={new Array(100).fill(undefined).map(() => ({
-            name: 'whatever',
+          items={new Array(10).fill(undefined).map(() => ({
+            name: 'gatsby',
             count: Math.floor(Math.random() * 500),
           }))}
         />

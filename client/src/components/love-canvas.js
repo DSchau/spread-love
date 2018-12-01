@@ -25,6 +25,7 @@ const Cell = styled.td`
   background-color: ${props => `hsl(3, 100%, ${props.lightness}%)`};
   color: ${props => props.color};
   border: 0;
+  overflow: hidden;
 `
 
 const Empty = () => (
