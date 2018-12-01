@@ -12,13 +12,19 @@ const Container = styled.div`
 const Table = styled.table`
   table-layout: fixed;
   width: 100%;
+  border-spacing: 0;
 `
+
+const Body = styled.tbody``
 
 const Row = styled.tr``
 const Cell = styled.td`
   font-size: ${props => props.fontSize}px;
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
+  background-color: ${props => `hsl(3, 100%, ${props.lightness}%)`};
+  color: ${props => props.color};
+  border: 0;
 `
 
 const Empty = () => (
@@ -49,24 +55,36 @@ class Love extends React.Component {
 
     return (
       <Table>
-        {new Array(tableSize).fill(undefined).map((_, rowIndex) => {
-          return (
-            <Row key={rowIndex}>
-              {new Array(tableSize).fill(undefined).map((__, colIndex) => {
-                const item = clone.shift()
-                if (!item) {
-                  return null
-                }
-                const scale = 32 + (item.count / total) * 100
-                return (
-                  <Cell key={`${rowIndex}-${colIndex}`} fontSize={scale}>
-                    {item.name}
-                  </Cell>
-                )
-              })}
-            </Row>
-          )
-        })}
+        <Body>
+          {new Array(tableSize).fill(undefined).map((_, rowIndex) => {
+            return (
+              <Row key={rowIndex}>
+                {new Array(tableSize).fill(undefined).map((__, colIndex) => {
+                  const item = clone.shift()
+                  if (!item) {
+                    return null
+                  }
+                  const scale = 32 + (item.count / total) * 100
+                  const lightness = Math.max(
+                    35,
+                    85 - (item.count / total) * 100
+                  )
+                  const color = lightness < 50 ? 'white' : 'black'
+                  return (
+                    <Cell
+                      key={`${rowIndex}-${colIndex}`}
+                      fontSize={scale}
+                      lightness={lightness}
+                      color={color}
+                    >
+                      {item.name}
+                    </Cell>
+                  )
+                })}
+              </Row>
+            )
+          })}
+        </Body>
       </Table>
     )
   }
