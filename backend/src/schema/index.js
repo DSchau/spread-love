@@ -3,5 +3,5 @@ module.exports = {
   resolvers: require('./resolvers'),
   schemaDirectives: require('./schema-directives'),
   typeDefs: require('./type-defs'),
-  introspection: true,
+  playground: true,
 };
