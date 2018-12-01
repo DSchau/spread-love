@@ -13,6 +13,12 @@ A GatsbyJS application used to demo moving _beyond static_ at [FITC][fitc].
 
 1.  **Clone this repo**
 
+1.  **Request a [Github token](https://github.com/settings/tokens) and give repo full access to the token**
+
+    ```sh
+    cat .env.sample > .env.development # then paste in your access token from gitub
+    ```
+
 1.  **Start developing.**
 
     Navigate into your new site’s directory and start it up.
@@ -27,7 +33,7 @@ A GatsbyJS application used to demo moving _beyond static_ at [FITC][fitc].
 
     Your site is now running at `http://localhost:8000`!
 
-    _Note: You'll also see a second link: `http://localhost:8000/___graphql`. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+    \_Note: You'll also see a second link: `http://localhost:8000/___graphql`. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql).\_
 
     Open the `your-code` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
@@ -87,3 +93,5 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 ## 💫 Deploy
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+
+[fitc]: https://fitc.ca/event/react2018/
