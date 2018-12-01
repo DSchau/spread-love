@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-micro');
+const { gql } = require('apollo-server-express');
 
 module.exports = gql`
   directive @date(defaultFormat: String = "MM/DD/YYYY") on FIELD_DEFINITION

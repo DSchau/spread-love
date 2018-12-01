@@ -4,13 +4,12 @@
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
-    "apollo-server-micro": "^2.2.5",
+    "apollo-server-express": "^2.2.5",
     "bad-words": "^3.0.0",
     "date-fns": "^1.29.0",
+    "express": "^4.16.4",
     "graphql": "0.13.2",
-    "lokijs": "^1.5.5",
-    "micro": "^9.3.3",
-    "micro-cors": "^0.1.1"
+    "lokijs": "^1.5.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -22,10 +21,9 @@
   "scripts": {
     "clean": "del-cli \"dist/**/*\"",
     "prebuild": "npm run clean",
-    "build": "cross-env NODE_ENV=production babel src --out-dir dist --copy-files",
+    "build": "cross-env NODE_ENV=production babel src --out-dir . --copy-files",
     "prestart": "npm run build",
-    "start": "micro dist/index.js",
-    "now-start": "micro dist/index.js"
+    "start": "node index.js"
   },
   "resolutions": {
     "graphql": "0.13.2"

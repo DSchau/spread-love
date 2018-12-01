@@ -1,0 +1,5 @@
+/*.js
+!/src/*.js
+
+/database
+/schema

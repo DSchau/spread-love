@@ -1,4 +1,4 @@
-const { SchemaDirectiveVisitor } = require('apollo-server-micro');
+const { SchemaDirectiveVisitor } = require('apollo-server-express');
 const formatDate = require('date-fns/format');
 const { defaultFieldResolver, GraphQLString } = require('graphql');
 
