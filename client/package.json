@@ -7,7 +7,7 @@
     "apollo-boost": "^0.1.22",
     "emotion": "9",
     "emotion-server": "9",
-    "gatsby": "^2.0.53",
+    "gatsby": "^2.0.59",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-emotion": "^2.0.7",
     "gatsby-plugin-layout": "^1.0.9",
@@ -16,13 +16,13 @@
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-sharp": "^2.0.12",
     "gatsby-source-filesystem": "^2.0.8",
-    "gatsby-source-graphql": "^2.0.6",
+    "gatsby-source-graphql": "^2.0.7",
     "gatsby-transformer-sharp": "^2.1.8",
     "isomorphic-fetch": "^2.2.1",
     "normalize.css": "^8.0.1",
-    "react": "^16.6.3",
+    "react": "16.7.0-alpha.2",
     "react-apollo": "^2.3.2",
-    "react-dom": "^16.6.3",
+    "react-dom": "16.7.0-alpha.2",
     "react-emotion": "9",
     "react-helmet": "^5.2.0",
     "react-icons": "^3.2.2",
@@ -34,12 +34,14 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "predevelop": "gatsby-dev --scan-once --quiet --packages gatsby && chmod +x ./node_modules/.bin/gatsby",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "dotenv": "^6.1.0",
     "prettier": "^1.15.2"
   },
   "repository": {

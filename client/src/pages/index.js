@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'react-emotion'
 import { MdSend } from 'react-icons/md'
 import { gql } from 'apollo-boost'
@@ -55,12 +55,10 @@ const Form = styled.form({
 })
 
 const Explanation = styled.h2({
-  margin: 0,
-  padding: 0,
-  color: 'white',
-  textAlign: 'center',
   padding: '0.5rem',
   margin: '0.5rem 0',
+  color: 'white',
+  textAlign: 'center',
   lineHeight: 1.5,
   border: '4px solid #fffaf5',
   backgroundColor: 'black',
@@ -122,17 +120,24 @@ const MediumUp = styled.span({
   },
 })
 
-const handleSubmit = sendLove => {
-  return ev => {
-    ev.preventDefault()
-
-    navigate('/love')
-  }
-}
-
+// h/t Donovan West from Amex.
 function Index() {
+  const [item, setItem] = useState('')
+  const handleSubmit = (item, sendLove) => {
+    return ev => {
+      ev.preventDefault()
+
+      sendLove({
+        variables: {
+          name: item,
+        },
+      })
+    }
+  }
+
   return (
     <Mutation
+      onCompleted={() => navigate('/love')}
       mutation={gql`
         mutation SendLove($name: String!) {
           addLove(name: $name) {
@@ -150,9 +155,13 @@ function Index() {
               {`}`}
             </Title>
           </Header>
-          <Form onSubmit={handleSubmit(sendLove)}>
+          <Form onSubmit={handleSubmit(item, sendLove)}>
             <InputContainer>
-              <Input required={true} />
+              <Input
+                value={item}
+                onChange={ev => setItem(ev.target.value)}
+                required={true}
+              />
               <Button>
                 <MdSend />
               </Button>

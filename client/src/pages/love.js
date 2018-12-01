@@ -11,7 +11,7 @@ const Container = styled.div`
 
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: scroll;
   position: relative;
 `
 
@@ -29,20 +29,12 @@ class Love extends React.Component {
         <LoveCanvas
           items={[
             {
-              name: 'asdf',
-              count: 10,
+              name: 'test',
+              count: 1,
             },
             {
-              name: 'werr',
-              count: 10,
-            },
-            {
-              name: 'hahah',
-              count: 10,
-            },
-            {
-              name: 'sup',
-              count: 10,
+              name: 'another',
+              count: 1,
             },
           ]}
         />
