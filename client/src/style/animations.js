@@ -1,4 +1,4 @@
-import { keyframes } from 'react-emotion'
+import { keyframes } from '@emotion/core'
 
 export const PULSE_ANIMATION = keyframes`
   0% {

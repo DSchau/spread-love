@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { MdSend } from 'react-icons/md'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'

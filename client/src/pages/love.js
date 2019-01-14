@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
 

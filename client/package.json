@@ -1,36 +1,38 @@
 {
   "name": "@dschau/spread-love-client",
-  "description": "A demo for FITC",
+  "description": "A demo of Gatsby + Content Mesh",
   "version": "1.0.0",
   "author": "Dustin Schau <dustin@gatsbyjs.com> (https://dustinschau.com)",
   "dependencies": {
-    "apollo-boost": "^0.1.22",
-    "emotion": "9",
-    "emotion-server": "9",
-    "gatsby": "^2.0.59",
-    "gatsby-image": "^2.0.20",
-    "gatsby-plugin-emotion": "^2.0.7",
-    "gatsby-plugin-layout": "^1.0.9",
-    "gatsby-plugin-manifest": "^2.0.9",
-    "gatsby-plugin-offline": "^2.0.16",
-    "gatsby-plugin-react-helmet": "^3.0.2",
-    "gatsby-plugin-sharp": "^2.0.12",
-    "gatsby-source-filesystem": "^2.0.8",
-    "gatsby-source-graphql": "^2.0.7",
-    "gatsby-transformer-sharp": "^2.1.8",
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
+    "apollo-boost": "^0.1.23",
+    "gatsby": "^2.0.91",
+    "gatsby-image": "^2.0.26",
+    "gatsby-plugin-emotion": "^4.0.1",
+    "gatsby-plugin-layout": "^1.0.11",
+    "gatsby-plugin-manifest": "^2.0.13",
+    "gatsby-plugin-offline": "^2.0.21",
+    "gatsby-plugin-react-helmet": "^3.0.5",
+    "gatsby-plugin-sharp": "^2.0.17",
+    "gatsby-source-filesystem": "^2.0.16",
+    "gatsby-source-graphql": "^2.0.8",
+    "gatsby-transformer-sharp": "^2.1.10",
     "isomorphic-fetch": "^2.2.1",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
     "react": "16.7.0-alpha.2",
-    "react-apollo": "^2.3.2",
+    "react-apollo": "^2.3.3",
     "react-dom": "16.7.0-alpha.2",
-    "react-emotion": "9",
     "react-helmet": "^5.2.0",
-    "react-icons": "^3.2.2",
+    "react-icons": "^3.3.0",
     "typeface-montserrat": "^0.0.54"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "content mesh",
+    "graphql",
+    "server-side rendering"
   ],
   "license": "MIT",
   "scripts": {
@@ -42,7 +44,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "dotenv": "^6.1.0",
+    "dotenv": "^6.2.0",
     "prettier": "^1.15.2"
   },
   "repository": {

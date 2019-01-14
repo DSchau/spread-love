@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import debounce from 'lodash.debounce'
 
 const Container = styled.canvas`
@@ -77,7 +77,7 @@ export default class Canvas extends Component {
     const { children, render = children } = this.props
     const { context } = this.state
     return (
-      <Container innerRef={node => (this.canvas = node)}>
+      <Container ref={node => (this.canvas = node)}>
         {context
           ? render({
               ...this.state,
