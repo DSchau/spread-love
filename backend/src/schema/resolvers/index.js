@@ -1,79 +1,146 @@
 const Filter = require('bad-words');
-const normalize = require('./normalize');
 
-const filter = new Filter();
+const swearFilter = new Filter();
 
 module.exports = {
   Query: {
     love(_, args, { database }) {
-      const { filter, sort } = args;
-      const query = filter
-        ? {
-            ...(filter.created && {
-              created: {
-                $gt: filter.created,
-              },
-            }),
-            ...(filter.name && {
-              name: {
-                $eq: filter.name,
-              },
-            }),
-            ...(filter.id && {
-              $loki: {
-                $eq: filter.id,
-              },
-            }),
-          }
-        : undefined;
-      const limit = typeof args.limit === 'number' ? args.limit : undefined;
-      return database.items
-        .chain()
-        .find(query)
-        .compoundsort(
-          sort.fields.map(field => [field, sort.order === 'ASC' ? false : true])
-        )
-        .limit(limit)
-        .data()
-        .map(normalize);
+      const { filter } = args;
+      const filterByFormula = [
+        filter.name && `IF(Name = '${filter.name}')`,
+        filter.count && `IF(Count >= ${filter.count})`,
+      ]
+        .filter(Boolean)
+        .join(' ');
+      return new Promise((resolve, reject) => {
+        let results = [];
+        database
+          .select({
+            filterByFormula,
+            sort: [{ field: `Count`, direction: `desc` }],
+          })
+          .eachPage(
+            (records, fetchNextPage) => {
+              results = results.concat(
+                records.map(record => {
+                  return {
+                    id: record.getId(),
+                    count: record.get(`Count`),
+                    name: record.get(`Name`),
+                    created: record.get(`Created`),
+                  };
+                })
+              );
+
+              fetchNextPage();
+            },
+            err => {
+              if (err) {
+                return reject(err);
+              }
+              return resolve(results);
+            }
+          );
+      });
     },
-    /*
-     * This is bad
-     * Almost certainly a better way to do it
-     */
     allLove(_, args, { database }) {
-      const items = database.items
-        .chain()
-        .find()
-        .data();
-      const lookup = items.reduce((merged, item) => {
-        if (!merged[item.name]) {
-          merged[item.name] = {
-            ...item,
-            count: 0,
-          };
-        }
-        merged[item.name].count += 1;
-        return merged;
-      }, {});
-      return Object.keys(lookup).map(key => lookup[key]);
+      return new Promise((resolve, reject) => {
+        let results = [];
+        database
+          .select({
+            filterByFormula: `NOT({Name} = '')`,
+            sort: [{ field: `Count`, direction: `desc` }],
+          })
+          .eachPage(
+            (records, fetchNextPage) => {
+              results = results.concat(
+                records.map(record => {
+                  return {
+                    id: record.getId(),
+                    count: record.get(`Count`),
+                    name: record.get(`Name`),
+                    created: record.get(`Created`),
+                  };
+                })
+              );
+
+              fetchNextPage();
+            },
+            err => {
+              if (err) {
+                return reject(err);
+              }
+              return resolve(results);
+            }
+          );
+      });
     },
   },
   Mutation: {
-    addLove(_, args, { database }) {
-      if (filter.isProfane(args.name)) {
+    addLove(_, { name }, { database }) {
+      if (swearFilter.isProfane(name)) {
         throw new Error(`Hey now! I see you 👀`);
       }
-      const item = {
-        ...args,
-        created: new Date(),
-      };
-      database.items.insert(item);
-      return item;
+      const now = new Date();
+      return new Promise((resolve, reject) => {
+        database.create(
+          {
+            Name: name,
+            Count: 1,
+            Created: now,
+            Updated: now,
+          },
+          (err, record) => {
+            if (err) {
+              return reject(err);
+            }
+            return resolve({
+              id: record.getId(),
+              count: record.get(`Count`),
+              name: record.get(`Name`),
+              created: record.get(`Created`),
+            });
+          }
+        );
+      });
     },
     reset(_, args, { database }) {
-      database.items.clear();
-      return true;
+      return new Promise((resolve, reject) => {
+        let results = [];
+        database.select().eachPage(
+          (records, fetchNextPage) => {
+            results = results.concat(
+              records.map(record => {
+                return {
+                  id: record.getId(),
+                  count: record.get(`Count`),
+                  name: record.get(`Name`),
+                  created: record.get(`Created`),
+                };
+              })
+            );
+
+            fetchNextPage();
+          },
+          err => {
+            if (err) {
+              return reject(err);
+            }
+            let count = 0;
+            results.forEach(({ id }) => {
+              database.destroy(id, destroyErr => {
+                if (destroyErr) {
+                  return reject(destroyErr);
+                }
+                count += 1;
+                if (count === results.length) {
+                  return resolve(true);
+                }
+              });
+            });
+          }
+        );
+      });
     },
   },
 };

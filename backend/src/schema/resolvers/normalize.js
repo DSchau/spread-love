@@ -5,6 +5,6 @@ module.exports = function normalize(item) {
 
   return {
     ...item,
-    id: item.$loki,
+    id: item.name,
   };
 };

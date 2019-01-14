@@ -13,6 +13,7 @@ module.exports = gql`
   type Love {
     id: ID!
     name: String!
+    count: Int!
     created: Date! @date
   }
 
@@ -24,7 +25,8 @@ module.exports = gql`
 
   input Filter {
     id: ID
-    name: String!
+    name: String
+    count: Int
     created: Date
   }
 

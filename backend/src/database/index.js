@@ -1,13 +1,9 @@
-const Loki = require('lokijs');
+const Airtable = require('airtable');
 
-const database = new Loki('love.db', {
-  autoload: true,
-  autosave: true,
-  autosaveInterval: 4000,
+Airtable.configure({
+  endpointUrl: 'https://api.airtable.com',
 });
+
+const database = Airtable.base(`appwBApIraXhdeTin`)(`Love`);
 
 module.exports = database;
-
-module.exports.items = database.addCollection('items', {
-  indices: ['name'],
-});
