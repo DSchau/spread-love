@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { gql } from 'apollo-boost'
-import { Query } from 'react-apollo'
+// TODO: gql apollo-boost
+// TODO: Query react-apollo
 
 import { LoveCanvas } from '../components'
 
@@ -18,28 +18,12 @@ const Container = styled.div`
 `
 
 function Love() {
+  // TODO: implement Query
+  // TODO: pollInterval
   return (
-    <Query
-      query={gql`
-        {
-          allLove {
-            name
-            count
-          }
-        }
-      `}
-      pollInterval={1500}
-      children={({ data, loading, error }) => {
-        if (loading || error) {
-          return null
-        }
-        return (
-          <Container>
-            <LoveCanvas items={data.allLove} />
-          </Container>
-        )
-      }}
-    />
+    <Container>
+      <LoveCanvas items={[]} />
+    </Container>
   )
 }
 
