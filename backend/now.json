@@ -2,9 +2,7 @@
   "version": 2,
   "builds": [{ "src": "index.js", "use": "@now/node-server" }],
   "routes": [{ "src": "/.*", "dest": "index.js" }],
-  "build": {
-    "env": {
-      "AIRTABLE_API_KEY": "@airtable_api_key"
-    }
+  "env": {
+    "AIRTABLE_API_KEY": "@airtable_api_key"
   }
 }
