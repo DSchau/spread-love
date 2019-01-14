@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { FaGithub, FaStar } from 'react-icons/fa'
-import { StaticQuery, graphql } from 'gatsby'
+// TODO: StaticQuery, graphql
 
 import Link from './outbound-link'
 
@@ -27,62 +27,57 @@ const MediumUp = styled.span`
 `
 
 export default function Footer() {
+  // TODO: StaticQuery
+  const data = {
+    github: {
+      repository: {
+        stargazers: {
+          totalCount: `TODO`,
+        },
+        url: ``,
+      },
+    },
+  }
   return (
-    <StaticQuery
-      query={graphql`
-        {
-          github {
-            repository(owner: "dschau", name: "spread-love") {
-              url
-              stargazers {
-                totalCount # for now!
-              }
-            }
-          }
-        }
-      `}
-      render={data => (
-        <Container>
-          <span css={{ display: 'flex' }}>
-            <Link
-              css={{ display: 'flex', alignItems: 'center' }}
-              href={data.github.repository.url}
-            >
-              <FaGithub
-                size={16}
-                css={{
-                  marginRight: '0.5rem',
-                  verticalAlign: 'sub',
-                }}
-              />
-              <MediumUp>Source on Github</MediumUp>
-            </Link>
-            <Link
-              css={{
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: '0.5rem',
-              }}
-              href={`${data.github.repository.url}/stargazers`}
-            >
-              <FaStar
-                size={16}
-                css={{
-                  marginRight: '0.5rem',
-                  verticalAlign: 'sub',
-                }}
-              />
-              <span>{data.github.repository.stargazers.totalCount}</span>
-            </Link>
-          </span>
-          <Link
-            css={{ fontWeight: 'bold' }}
-            href="https://twitter.com/search?q=%23buildwithgatsby&amp;src=typd&amp;lang=en"
-          >
-            #buildwithgatsby
-          </Link>
-        </Container>
-      )}
-    />
+    <Container>
+      <span css={{ display: 'flex' }}>
+        <Link
+          css={{ display: 'flex', alignItems: 'center' }}
+          href={data.github.repository.url}
+        >
+          <FaGithub
+            size={16}
+            css={{
+              marginRight: '0.5rem',
+              verticalAlign: 'sub',
+            }}
+          />
+          <MediumUp>Source on Github</MediumUp>
+        </Link>
+        <Link
+          css={{
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: '0.5rem',
+          }}
+          href={`${data.github.repository.url}/stargazers`}
+        >
+          <FaStar
+            size={16}
+            css={{
+              marginRight: '0.5rem',
+              verticalAlign: 'sub',
+            }}
+          />
+          <span>{data.github.repository.stargazers.totalCount}</span>
+        </Link>
+      </span>
+      <Link
+        css={{ fontWeight: 'bold' }}
+        href="https://twitter.com/search?q=%23buildwithgatsby&amp;src=typd&amp;lang=en"
+      >
+        #buildwithgatsby
+      </Link>
+    </Container>
   )
 }

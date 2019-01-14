@@ -32,16 +32,6 @@ module.exports = {
         icon: 'src/images/heart.png',
       },
     },
-    {
-      resolve: 'gatsby-source-graphql',
-      options: {
-        typeName: 'Github',
-        fieldName: 'github',
-        url: 'https://api.github.com/graphql',
-        headers: {
-          Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
-        },
-      },
-    },
+    // TODO: add gatsby-source-graphql plugin
   ],
 }

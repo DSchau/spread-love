@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react' // TODO: useState
 import styled from '@emotion/styled'
 import { MdSend } from 'react-icons/md'
-import { gql } from 'apollo-boost'
-import { Mutation } from 'react-apollo'
-import { navigate } from 'gatsby'
+// TODO: gql, Mutation
+// TODO: navigate
 
 import { HeartCanvas, Heart, Footer } from '../components'
 import { mediaQuery, position } from '../style'
@@ -122,62 +121,38 @@ const MediumUp = styled.span({
 
 // h/t Donovan West from Amex.
 function Index() {
-  const [item, setItem] = useState('')
-  const handleSubmit = (item, sendLove) => {
-    return ev => {
-      ev.preventDefault()
+  // TODO: set up useState and handleSubmit
 
-      sendLove({
-        variables: {
-          name: item,
-        },
-      })
-    }
-  }
-
+  // TODO: wrap with Mutation and children prop
   return (
-    <Mutation
-      onCompleted={() => navigate('/love')}
-      mutation={gql`
-        mutation SendLove($name: String!) {
-          addLove(name: $name) {
-            name
-          }
-        }
-      `}
-      children={sendLove => (
-        <Container>
-          <HeartCanvas />
-          <Header>
-            <Title>
-              {`{...`}
-              <Heart />
-              {`}`}
-            </Title>
-          </Header>
-          <Form onSubmit={handleSubmit(item, sendLove)}>
-            <InputContainer>
-              <Input
-                value={item}
-                onChange={ev => setItem(ev.target.value)}
-                required={true}
-              />
-              <Button>
-                <MdSend />
-              </Button>
-            </InputContainer>
-            <Explanation>
-              What do you love?{` `}
-              <MediumUp>
-                What fuels your fire? What are you passionate about?
-              </MediumUp>{' '}
-              Share it!
-            </Explanation>
-          </Form>
-          <Footer />
-        </Container>
-      )}
-    />
+    <Container>
+      <HeartCanvas />
+      <Header>
+        <Title>
+          {`{...`}
+          <Heart />
+          {`}`}
+        </Title>
+      </Header>
+      {/* TODO: handleSubmit */}
+      <Form>
+        <InputContainer>
+          {/* TODO: value, onChange */}
+          <Input required={true} />
+          <Button>
+            <MdSend />
+          </Button>
+        </InputContainer>
+        <Explanation>
+          What do you love?{` `}
+          <MediumUp>
+            What fuels your fire? What are you passionate about?
+          </MediumUp>{' '}
+          Share it!
+        </Explanation>
+      </Form>
+      <Footer />
+    </Container>
   )
 }
 
