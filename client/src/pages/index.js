@@ -124,6 +124,7 @@ function Index() {
   // TODO: set up useState and handleSubmit
 
   // TODO: wrap with Mutation and children prop
+  // TODO: call navigate onCompleted
   return (
     <Container>
       <HeartCanvas />
